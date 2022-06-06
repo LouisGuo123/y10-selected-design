@@ -99,7 +99,7 @@ public class Sorts {
 	 * Sorts an array in-place using QuickSort.
 	 *
 	 * @param arr array to be sorted
-	 * */
+	 */
 
 	public static void quickSort(int[] arr) {
 		quickSort(arr, 0, arr.length - 1);
