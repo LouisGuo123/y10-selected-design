@@ -1,5 +1,4 @@
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Sorts {
@@ -11,14 +10,37 @@ public class Sorts {
 
 	public static int comparisons = 0;
 
+	/**
+	 * Permutates an array randomly.
+	 *
+	 * @param arr array to be permutated
+	 */
+
 	public static void permutate(int[] arr) {
-		Random rand = new Random(ThreadLocalRandom.current().nextLong());
+		long seed = ThreadLocalRandom.current().nextLong();
+		permutate(arr, seed);
 	}
 
 	/**
-	 * In-place implementation of bubble sort.
+	 * Permutates an array randomly with an associated seed.
+	 * The seed determines what random numbers are produced.
 	 *
-	 * @param arr Array to be sorted
+	 * @param arr array to be permutated
+	 * @param seed seed of the Java Random class
+	 */
+
+	public static void permutate(int[] arr, long seed) {
+		Random rand = new Random(seed);
+
+		for(int i = 0; i < arr.length - 1; i++) {
+			swap(arr, i, rand.nextInt(arr.length - i) + i);
+		}
+	}
+
+	/**
+	 * Sorts an array in-place using bubble sort.
+	 *
+	 * @param arr array to be sorted
 	 */
 
 	public static void bubbleSort(int[] arr) {
@@ -34,9 +56,9 @@ public class Sorts {
 	}
 
 	/**
-	 * In-place implementation of insertion sort.
+	 * Sorts an array in-place using insertion sort.
 	 *
-	 * @param arr Array to be sorted
+	 * @param arr array to be sorted
 	 */
 
 	public static void insertionSort(int[] arr) {
@@ -50,9 +72,9 @@ public class Sorts {
 	}
 
 	/**
-	 * In-place implementation of selection sort.
+	 * Sorts an array in-place using selection sort.
 	 *
-	 * @param arr Array to be sorted
+	 * @param arr array to be sorted
 	 */
 
 	public static void selectionSort(int[] arr) {
@@ -74,9 +96,9 @@ public class Sorts {
 	}
 
 	/**
-	 * In-place implementation of QuickSort.
+	 * Sorts an array in-place using QuickSort.
 	 *
-	 * @param arr Array to be sorted
+	 * @param arr array to be sorted
 	 * */
 
 	public static void quickSort(int[] arr) {
@@ -126,9 +148,9 @@ public class Sorts {
 	}
 
 	/**
-	 * In-place implementation of merge sort
+	 * Sorts an array in-place using merge sort.
 	 *
-	 * @param arr Array to be sorted
+	 * @param arr array to be sorted
 	 */
 
 	public static void mergeSort(int[] arr) {
@@ -174,6 +196,12 @@ public class Sorts {
 		}
 	}
 
+	public static void bogoSort(int[] arr) {
+		while(!isInOrder(arr)) {
+			permutate(arr);
+		}
+	}
+
 	public static void reset() {
 		comparisons = 0;
 	}
@@ -192,5 +220,14 @@ public class Sorts {
 		int t = arr[i];
 		arr[i] = arr[j];
 		arr[j] = t;
+	}
+
+	public static boolean isInOrder(int[] arr) {
+		for(int i = 0; i < arr.length - 1; i++) {
+			if(!comparator(arr[i], arr[i + 1])) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
