@@ -158,7 +158,7 @@ public class Sorts {
 		mergeSplit(arr);
 	}
 
-	public static void mergeSplit(int[] arr) {
+	private static void mergeSplit(int[] arr) {
 		if(arr.length <= 1) {
 			return;
 		}
@@ -179,7 +179,7 @@ public class Sorts {
 		merge(arr, left_arr, right_arr);
 	}
 
-	public static void merge(int[] arr, int[] left_arr, int[] right_arr) {
+	private static void merge(int[] arr, int[] left_arr, int[] right_arr) {
 		int left_i = 0;
 		int right_i = 0;
 
@@ -195,6 +195,12 @@ public class Sorts {
 			}
 		}
 	}
+	
+	/**
+	 * Sorts an array in-place using bogo sort.
+	 *
+	 * @param arr array to be sorted
+	 */
 
 	public static void bogoSort(int[] arr) {
 		while(!isInOrder(arr)) {
