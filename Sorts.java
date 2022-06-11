@@ -102,6 +102,8 @@ public class Sorts {
 	 */
 
 	public static void quickSort(int[] arr) {
+		reset();
+		
 		quickSort(arr, 0, arr.length - 1);
 	}
 
